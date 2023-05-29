@@ -34,7 +34,7 @@ export const fetchPets = () => {
       })
       .catch(error => {
         const errorMessage = error.message;
-        dispatch(fetchPetsFailure(errorMessage));
+        dispatch(fetchPetsFailure(errorMessage))；
       });
   };
 };
