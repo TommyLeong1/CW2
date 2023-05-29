@@ -32,13 +32,7 @@ function Login() {
           <input type="password" id="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)} required />
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
-        <button type="submit" className="btn btn-primary">文件夾: `client`
-
-          文件名: `src/components/Login.js` (續)
-
-          後綴名: 無
-
-          ```javascript
+        <button type="submit" className="btn btn-primary">
           Login</button>
       </form>
     </div>

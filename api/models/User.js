@@ -9,4 +9,15 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
-  };
+  },
+  message: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+module.exports = mongoose.model('User', UserSchema);
