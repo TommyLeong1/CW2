@@ -27,4 +27,38 @@ const validationSchema = Yup.object().shape({
 
 function AddCat() {
   const [locations, setLocations] = useState([]);
-  const history = useHistory
+  const history = useHistory();
+
+  useEffect(() => {
+    axios.get('/api/locations')
+      .then(res => setLocations(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    axios.post('/api/cats', values)
+      .then(res => {
+        setSubmitting(false);
+        history.push(`/cats/${res.data._id}`);
+      })
+      .catch(err => {
+        setSubmitting(false);
+        console.log(err);
+      });
+  };
+
+  return (
+    <div className="AddCat">
+      <h1>Add a Cat</h1>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+        {({ isSubmitting }) => (
+          <Form>
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <Field type="text" id="name" name="name" className="form-control" />
+              <ErrorMessage name="name" component="div" className="invalid-feedback" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="breed">Breed:</label>
+              <Field type="text" id="breed" name="breed" className="form-control" />
+              <ErrorMessage name="bre
